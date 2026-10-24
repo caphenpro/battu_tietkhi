@@ -4,7 +4,7 @@ Thư viện Python hỗ trợ xác định Can Chi của **Tháng** (theo Kinh �
 
 ## Cách cài đặt trực tiếp
 ```bash
-pip install git+ttps://github.com/caphenpro/battu_tietkhi
+pip install git+ttps://github.com
 ```
 
 ## Cách gọi sử dụng trong Code
