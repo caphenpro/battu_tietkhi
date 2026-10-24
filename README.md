@@ -6,6 +6,8 @@ Thư viện Python hỗ trợ xác định Can Chi của **Tháng** (theo Kinh �
 ```bash
 pip install git+ttps://github.com/caphenpro/battu_tietkhi.git
 pip install git+https://github.com/caphenpro/battu_tietkhi.git --break-system-packages
+pip install git+https://github.com/caphenpro/battu_tietkhi.git --break-system-packages --no-cache-dir
+
 
 ```
 
