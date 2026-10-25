@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="battu_tietkhi",
-    version="1.1.1",
+    version="1.1.2",
     py_modules=["battu_tietkhi"],
     description="Thuật toán xác định tháng Can Chi Bát Tự theo kinh độ mặt trời",
     long_description=open("README.md", encoding="utf-8").read(),
