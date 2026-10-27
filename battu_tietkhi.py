@@ -93,7 +93,7 @@ def get_battu_hour(dt: datetime.datetime, day_can: str) -> str:
     total_minutes = hour * 60 + minute
 
     shifted_minutes = total_minutes % 1440
-    hour_idx = int(shifted_minutes // 120) % 12
+    hour_idx = int(((total_minutes + 60) % 1440) // 120) % 12
     chi_hour = CHI_HOURS[hour_idx]
 
     start_can = NGU_TY_CA[_normalize_can(day_can)]
