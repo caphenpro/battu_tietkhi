@@ -6,7 +6,7 @@ Notable changes to `battu-tietkhi` are documented here.
 
 ### Tests and maintenance
 - Expand calendar and Bát Tự regression coverage, including Can normalization and cross-check cases for lunar dates and solar-term boundaries.
-- Include the Flask calendar/Bát Tự application in the repository's integration-test workflow as a reference consumer of the library.
+- Keep the Flask calendar/Bát Tự application under `tests/` as an integration harness for manually cross-checking the library against a real consumer.
 - No public API changes are intended in this maintenance release.
 
 ## 1.2.3 — 2026-10-28
