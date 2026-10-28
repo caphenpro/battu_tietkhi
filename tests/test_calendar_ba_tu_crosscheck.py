@@ -109,7 +109,7 @@ class BaTuCrossCheckTests(unittest.TestCase):
 
         self.assertEqual(before["tru_nam"], "Giáp Thìn")
         self.assertEqual(before["tru_thang"], "Đinh Sửu")
-        self.assertEqual(after["tru_nam"], "Ất Tỵ")
+        self.assertEqual(after["tru_nam"], "Ất Tị")
         self.assertEqual(after["tru_thang"], "Mậu Dần")
 
     def test_hour_branch_boundaries(self):
