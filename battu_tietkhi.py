@@ -43,6 +43,7 @@ def _normalize_can(can: str) -> str:
 
     normalized = str(can).strip()
     aliases = {
+        "giáp": "Giáp",
         "giap": "Giáp",
         "ất": "Ất",
         "at": "Ất",
