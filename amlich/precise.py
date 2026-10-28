@@ -52,14 +52,24 @@ def new_moons(start: datetime, end: datetime) -> list[datetime]:
 
 def solar_term(year: int, longitude: float) -> datetime:
     """Thời điểm (UTC) Mặt Trời đạt `longitude` độ lần đầu tiên từ 1/1/year."""
-    # Ước lượng ngày (Xuân phân ~20/3 ứng với 0°), rồi tìm trong cửa sổ hẹp quanh đó.
-    # (Tìm trên cửa sổ rộng 400 ngày đôi khi trả None với một số kinh độ.)
-    est = datetime(year, 3, 20, tzinfo=timezone.utc) + timedelta(days=longitude / 360 * 365.2422)
-    if est.year > year:
-        est -= timedelta(days=365.2422)
-    if est < datetime(year, 1, 1, tzinfo=timezone.utc):
+    # Ước lượng từ Xuân phân (~20/3, kinh độ 0°). Chuẩn hóa góc về
+    # [-180°, 180°) để tránh đẩy các kinh độ 315°–345° sang sai thời điểm.
+    # Sau đó đưa ước lượng về đúng năm dương lịch được yêu cầu. Ví dụ:
+    # 315° (Lập Xuân) phải rơi vào đầu tháng 2, còn 270° (Đông chí)
+    # phải rơi vào cuối tháng 12 của chính năm đó.
+    lon = float(longitude) % 360.0
+    delta_lon = (lon + 180.0) % 360.0 - 180.0
+    est = datetime(year, 3, 20, tzinfo=timezone.utc) + timedelta(
+        days=delta_lon / 360.0 * 365.2422
+    )
+    year_start = datetime(year, 1, 1, tzinfo=timezone.utc)
+    year_end = datetime(year + 1, 1, 1, tzinfo=timezone.utc)
+    if est < year_start:
         est += timedelta(days=365.2422)
-    t = _ast.SearchSunLongitude(longitude, _from_dt(est - timedelta(days=20)), 40)
+    elif est >= year_end:
+        est -= timedelta(days=365.2422)
+
+    t = _ast.SearchSunLongitude(lon, _from_dt(est - timedelta(days=20)), 40)
     if t is None:
         raise RuntimeError(f"không tìm được kinh độ {longitude} năm {year}")
     return _to_dt(t)
