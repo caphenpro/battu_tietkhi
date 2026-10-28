@@ -9,7 +9,7 @@ on:
         description: "Git tag to publish (for retrying a failed release)"
         required: true
         type: string
-        default: "v1.2.3"
+        default: "v1.2.4"
 
 permissions:
   contents: read
